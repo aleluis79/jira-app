@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+<a *ngIf="!isLogged()" href="javascript:void(0)" (click)="login()">Login</a>
+
+<div *ngIf="isLogged()">
+  <a href="javascript:void(0)" (click)="logout()">Logout</a>
+  <br /><br />
+  <a href="javascript:void(0)" (click)="getIssues()">Issues</a>
+  <br /><br />
+  <div *ngFor="let issue of issues">
+    {{issue.key}} - {{issue.title}}
+  </div>
+
+</div>
