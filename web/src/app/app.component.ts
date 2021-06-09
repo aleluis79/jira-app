@@ -23,8 +23,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       params => {
         params = params;
         console.log(`capturo: ${params.verifier}`);
-        if (params.verifier != undefined && params.verifier != 'denied') {
-          sessionStorage.setItem('verifier', params.verifier);
+        if (params.oauth_verifier != undefined && params.oauth_verifier != 'denied') {
+          sessionStorage.setItem('verifier', params.oauth_verifier);
           if (sessionStorage.getItem('access') == null) {
             this.comunService.access().subscribe(
               rta => {

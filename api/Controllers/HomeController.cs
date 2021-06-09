@@ -45,7 +45,7 @@ namespace api.Controllers
         [HttpGet("login")]
         public async Task<IActionResult> LoginAsync() {
 
-            var settings = new JiraOAuthRequestTokenSettings(_url, _consumerKey, _consumerSecret, $"{Request.Scheme}://{Request.Host}/Home/callback");
+            var settings = new JiraOAuthRequestTokenSettings(_url, _consumerKey, _consumerSecret, "http://localhost:4200");
 
             var requestToken = await JiraOAuthTokenHelper.GenerateRequestTokenAsync(settings);
 
@@ -59,16 +59,6 @@ namespace api.Controllers
                     secret=requestToken.OAuthTokenSecret 
                 });
         }
-
-
-        [HttpGet("callback")]
-        public void Callback() {
-
-            var verifier = Request.Query["oauth_verifier"].ToString();
-            Response.Redirect("http://localhost:4200?verifier=" + verifier);
-
-        }
-
 
         [HttpGet("access")]
         public async Task<IActionResult> AccessAsync() {
